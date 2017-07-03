@@ -7,7 +7,7 @@ categories: project
 
 For our first project at Metis Data Science Bootcamp, we used MTA subway traffic data to analyze ridership volumes across stations in the subway system.
 
-# The Problem
+## The Situation
 
 A fictitious company (WTWY Inc. - Women Tech Women Yes) was hosting a gala early in the Summer and needed assistance to determine part of its advertising strategy. WTWY's mission statement was to increase the participation of Women in the Tech industry and STEM subjects. 
 
@@ -21,7 +21,7 @@ Our deadline to analyze the data and make a recommendation was a few days away, 
 4. Canvassing would occur for one week in the spring.
 5. WTWY's marketing team determined the target demographic to be individuals already in Tech and in particular: Women already in Tech.
 
-# Our Solution
+## Our Solution
 
 Since canvassing would occur during one week in the spring, we analyzed data for the months of March, April, and May 2017.
 
@@ -37,7 +37,7 @@ At last, we decided to concentrate on subway stations in areas of high density o
 
 To capture tech individuals on their way to work, we would analyze turnstile exit counts from subway stations in tech-heavy areas, assuming that people exiting these stations in the morning were working nearby. Similarly, we would examine turnstile entry counts in the evening thinking that people entering these stations worked nearby and were coming out of work. During work hours we would analyze turnstile entry and exit counts information.
 
-# Our Results
+## Our Results
 
 We determined the best locations to place the canvassing teams for each period of the day for each day of the week.
 
