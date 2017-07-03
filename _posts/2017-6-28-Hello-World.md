@@ -44,6 +44,7 @@ We determined the best locations to place the canvassing teams for each period o
 <style>
 .tablelines table, .tablelines td, .tablelines th {
         border: 1px solid black;
+        padding: 10px;
         }
 </style>
 
