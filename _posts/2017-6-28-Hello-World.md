@@ -59,5 +59,6 @@ FRIDAY|YORK ST - F|YORK ST - F|YORK ST - F
  |125 ST - 1|HOYT-SCHER - ACG|CANAL ST - 1
 
 
-
+```
 ![_config.yml]({{ site.baseurl }}/images/20170628_TechCompaniesLocationDensity.png)
+```
