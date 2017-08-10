@@ -49,7 +49,9 @@ We determined there were five locations that consistently appeared as the best t
 <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1tiu14vjnjJwaOQvz03ZRIofoIMw" width="640" height="480"></iframe>
 
 
+
 At each time of the day, for each day of the week, the best locations to place the canvassing teams are:
+
 
 
 <style>
