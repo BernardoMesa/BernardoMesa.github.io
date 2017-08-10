@@ -52,8 +52,9 @@ We determined there were five locations that consistently appeared as the best t
   
   
 At each time of the day, for each day of the week, the best locations to place the canvassing teams are:  
-
-
+  
+  
+  
 <style>
 .tablelines table, .tablelines td, .tablelines th {
         border: 1px solid black;
