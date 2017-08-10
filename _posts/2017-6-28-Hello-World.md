@@ -32,9 +32,11 @@ Given our target audience, it initially seemed best to concentrate on the subway
 We thought to use census gender and income information in the NYC area to determine those zip codes with a higher proportion of wealthy women but decided against using this data because this information would not tell us if these individuals or women worked in Tech.
 
 At last, we decided to concentrate on subway stations in areas of high density of Tech companies and learning Institutions, presuming that, for WTWY fundraising purposes, people in Tech already fell within the wealthy category.
-
+  
+  
 ![_config.yml]({{ site.baseurl }}/images/20170628_TechCompaniesLocationDensity.png)
-
+  
+  
 To capture tech individuals on their way to work, we would analyze turnstile exit counts from subway stations in tech-heavy areas, assuming that people exiting these stations in the morning were working nearby. Similarly, we would examine turnstile entry counts in the evening thinking that people entering these stations worked nearby and were coming out of work. During work hours we would analyze turnstile entry and exit counts information.
 
 ## Our Results
@@ -66,7 +68,9 @@ FRIDAY|YORK ST - F|YORK ST - F|YORK ST - F
  |125 ST - 23|125 ST - 23|HOYT-SCHER - ACG
  |125 ST - 1|HOYT-SCHER - ACG|CANAL ST - 1
 {: .tablelines}
-
+  
+  
+<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1tiu14vjnjJwaOQvz03ZRIofoIMw" width="640" height="480"></iframe>
 
 
 
