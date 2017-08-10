@@ -4,12 +4,18 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+Data scientist and investment professional with 10 years of experience at an institutional money manager.
 
-### More Information
+Team player able to interface with colleagues and clients at all levels. Strong people skills and, at the same time, highly analytical and result driven.
 
-A place to include any other types of information that you'd like to include about yourself.
+### Core competencies:
+
+- data science and quantitative analysis
+- portfolio management and analysis
+- risk management
+- fixed income trading
+- client facing experience
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[BernardoMesa@gmail.com](mailto:BernardoMesa@gmail.com)
