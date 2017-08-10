@@ -4,9 +4,13 @@ title: About
 permalink: /about/
 ---
 
-Data scientist and investment professional with 10 years of experience at an institutional money manager.
+I am a data scientist passionate about helping investor achieve their investment goals. I want to level the playing field for the retail investor and make available to them the same advice that institutionals investors receive.
 
-Team player able to interface with colleagues and clients at all levels. Strong people skills and, at the same time, highly analytical and result driven.
+I have experience creating:
+- Asset allocation tools,
+- Portfolio optimization tools.
+- Systematic trading strategies.
+- Fixed income index replication tools.
 
 ### Core competencies:
 
@@ -14,7 +18,6 @@ Team player able to interface with colleagues and clients at all levels. Strong 
 - portfolio management and analysis
 - risk management
 - fixed income trading
-- client facing experience
 
 ### Contact me
 
