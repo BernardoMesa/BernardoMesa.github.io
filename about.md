@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-I am a data scientist passionate about helping investor achieve their investment goals. I want to level the playing field for the retail investor and make available to them the same advice that institutionals investors receive.
+I am a data scientist passionate about helping investor achieve their investment goals. I want to level the playing field for the retail investor and make available to them the tools that institutionals investors enjoy.
 
 I have experience creating:
 - Asset allocation tools,
