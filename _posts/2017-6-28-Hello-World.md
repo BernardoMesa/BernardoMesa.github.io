@@ -36,8 +36,9 @@ At last, we decided to concentrate on subway stations in areas of high density o
   
   
 ![_config.yml]({{ site.baseurl }}/images/20170628_TechCompaniesLocationDensity.png)
-  
-  
+
+{% include image.html url="/images/20170628_TechCompaniesLocationDensity.png" description="Sectors with high density of Tech companies and institutions of higher learning." %}
+
   
 To capture tech individuals on their way to work, we would analyze turnstile exit counts from subway stations in tech-heavy areas, assuming that people exiting these stations in the morning were working nearby. Similarly, we would examine turnstile entry counts in the evening thinking that people entering these stations worked nearby and were coming out of work. During work hours we would analyze turnstile entry and exit counts information.
 
