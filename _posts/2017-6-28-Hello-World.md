@@ -43,18 +43,15 @@ To capture tech individuals on their way to work, we would analyze turnstile exi
 
 ## Our Results
 
-We determined there were five locations that consistently appeared as the best three during each period of the day.  
-  
-  
-  
-<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1tiu14vjnjJwaOQvz03ZRIofoIMw" width="640" height="480"></iframe>  
-  
-  
-  
-At each time of the day, for each day of the week, the best locations to place the canvassing teams are:  
-  
-  
-  
+We determined there were five locations that consistently appeared as the best three during each period of the day.
+
+
+<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1tiu14vjnjJwaOQvz03ZRIofoIMw" width="640" height="480"></iframe>
+
+
+At each time of the day, for each day of the week, the best locations to place the canvassing teams are:
+
+
 <style>
 .tablelines table, .tablelines td, .tablelines th {
         border: 1px solid black;
