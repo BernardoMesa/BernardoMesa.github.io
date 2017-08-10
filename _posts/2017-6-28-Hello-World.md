@@ -48,8 +48,7 @@ We determined there were five locations that consistently appeared as the best t
 
 
 
-At each time of the day, for each day of the week, the best locations to place the canvassing teams are:
-
+The table below summarizes the best locations to place the canvassing teams during each time of day for each day of the week.
 
 
 <style>
@@ -62,20 +61,20 @@ At each time of the day, for each day of the week, the best locations to place t
 **DAY** |**MORNING**|**MIDDLE OF DAY**|**EVENING**
 :-----:|:-----:|:-----:|:-----:
 MONDAY|YORK ST - F|YORK ST - F|YORK ST - F
- |125 ST - 23|HOYT-SCHER - ACG|HOYT-SCHER - ACG
- |125 ST - 1|125 ST - 23|125 ST - 23
+ |125 ST - 23|125 ST - 23|125 ST - 23
+ |125 ST - 1| HOYT-SCHER - ACG|HOYT-SCHER - ACG
 TUESDAY|YORK ST - F|YORK ST - F|YORK ST - F
- |125 ST - 23|HOYT-SCHER - ACG|CANAL ST - JNQRZ6W
- |125 ST - 1|125 ST - 23|HOYT-SCHER - ACG
+ |125 ST - 23|125 ST - 23| CANAL ST - JNQRZ6W
+ |125 ST - 1|HOYT-SCHER - ACG|HOYT-SCHER - ACG
 WEDNESDAY|YORK ST - F|YORK ST - F|YORK ST - F
- |125 ST - 23|125 ST - 23|HOYT-SCHER - ACG
- |125 ST - 1|HOYT-SCHER - ACG|CANAL ST - 1
+ |125 ST - 23|125 ST - 23|CANAL ST - 1
+ |125 ST - 1|HOYT-SCHER - ACG| HOYT-SCHER - ACG
 THURSDAY|YORK ST - F|YORK ST - F|YORK ST - F
- |125 ST - 1|125 ST - 23|HOYT-SCHER - ACG
- |125 ST - 23|HOYT-SCHER - ACG|CANAL ST - 1
+ |125 ST - 1| HOYT-SCHER - ACG|HOYT-SCHER - ACG
+ |125 ST - 23|125 ST - 23|CANAL ST - 1
 FRIDAY|YORK ST - F|YORK ST - F|YORK ST - F
- |125 ST - 23|125 ST - 23|HOYT-SCHER - ACG
- |125 ST - 1|HOYT-SCHER - ACG|CANAL ST - 1
+ |125 ST - 23|125 ST - 23|CANAL ST - 1
+ |125 ST - 1|HOYT-SCHER - ACG|HOYT-SCHER - ACG
 {: .tablelines}
   
   
