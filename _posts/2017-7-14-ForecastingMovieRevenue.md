@@ -11,6 +11,10 @@ Movie studios, just as any other commercial enterprise, have limited resources a
 Better gross revenue estimates and an accurate confidence interval around this estimate would assist movie studios in raising funds, creating accurate budgets and optimizing their movie pipeline.
 
 
+- [Data Exploration](#DataExploration)
+- [Model Development](#ModelSection)
+
+
 ## The Data - Thanks Box Office Mojo!
 
 
@@ -20,7 +24,7 @@ Using scrapy, I scraped information from Box Office Mojo. I focused on collectin
 Since the data was collected in json format, I created a script to transform it into a pandas dataframe and a separate one to clean the data and get it ready for analysis.
 
 
-## Examining the Dataset
+## <a name="DataExploration"></a>Examining the Dataset
 
 
 From looking at the weekly box office for several movies it seemed apparent that most of the revenue for each movie was made in the first few weeks the movie was shown. This led me to speculate that the number of movies premiered in the same week had an impact on the total gross revenue made at the box office, and accordingly I created a new feature to investigate this theory.
@@ -102,6 +106,27 @@ A release of another movie of the same genre seems to negatively affect Box Offi
 
 
 There does not seem to be a discernable pattern between Box Office Outcomes and day of the week a movie is released, except that the widest range of outcomes seems to occur when movies are released on Fridays.
+
+
+
+# <a name="ModelSection"></a>Developing the Model
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
