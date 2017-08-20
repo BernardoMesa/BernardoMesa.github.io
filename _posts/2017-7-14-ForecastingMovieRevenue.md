@@ -54,10 +54,16 @@ Using the describe() method in pandas I found out some interesting facts about t
 ### Distribution of Box Office Gross and Correlations
 
 
-A pair plot revealed the distributions of 'Box Office Gross' ('gtd' in the plot) and 'Budget' to be a bit Log Normal. This led me to used their log values in the regression analysis in order to make their distributions more Normal.
+Inspecting a pair plot revealed the distributions of 'Box Office Gross' ('gtd' in the plot) and 'Budget' to be a bit Log Normal. This led me to used their log values in the regression analysis in order to make their distributions more Normal.
 
 
 ![alt text](/images/2017-7-14_post/pairPlot.svg "Pair Plot")
+
+
+A pair plot of the log of 'Box Office Gross' and budget show slightly more normal distributions for these variables.
+
+
+![alt text](/images/2017-7-14_post/pairLogPlot.svg "Pair Plot")
 
 
 In our analysis 'Box Office Gross' (BGO) is our dependent variable. Examining the correlation of BGO with our other variables we can notice a mild positive (+ve) correlation with movie 'Duration' (0.26), stronger +ve correlation to 'Budget' and 'Weeks in Theaters' (0.6 and 0.45 respectively), and a weak negative (-ve) correlation to number of movies premiering in the same week (-0.12). I decided to drop 'Weeks in Theaters' from the analysis, since its seems likely that 'Weeks in Theaters' is not known prior to movie release.
@@ -68,7 +74,7 @@ Also, budget and movie duration appear mildly +ve correlated (0.33), which alert
 
 ### Box Office Gross (BGO) and Budget per year
 
-The mean movie budget seems to have stayed relatively stable at around 50 million, while the its distribution seems to be becoming more right skewed with time with top quartile budgets on an upward trajectory with time.
+The mean movie budget seems to have stayed relatively stable at around 50 million, while its distribution seems to be becoming more right skewed with time with the top quartile budgets gradually increasing with time.
 
 
 ![alt text](/images/2017-7-14_post/budgetVsYear.svg "Budget Vs. Year")
@@ -78,6 +84,24 @@ BGO distributions are right skewed and the mean budget seems to stay in the 50 t
 
 
 ![alt text](/images/2017-7-14_post/gtdVsYear.svg "Box Office Gross Vs. Year")
+
+
+### Movie Premiere condition
+
+
+Box Office distribution grouped by number of movies released in a week seem to shift lower as more movies are launched the same week. The mean of the distributions seems to remain in the 10^(7.75) to 10^8 range independently of the number of movies launched in the week.
+
+
+![alt text](/images/2017-7-14_post/gtdLogVsNumReleases.svg "Log Box Office Vs. Same Week Number of Movies Releases")
+
+
+A release of another movie of the same genre seems to negatively affect Box Office outcomes and shifts its distribution lower.
+
+
+![alt text](/images/2017-7-14_post/gtdLogVsSameGenreNumReleases.svg "Log Box Office Vs. Same Week Same Genre Number of Movies Releases")
+
+
+There does not seem to be a discernable pattern between Box Office Outcomes and day of the week a movie is released, except that the widest range of outcomes seems to occur when movies are released on Fridays.
 
 
 
