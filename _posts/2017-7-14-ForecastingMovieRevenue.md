@@ -137,7 +137,7 @@ To verify our model satisfied the linear regression assumptions, I created and f
 One drawback of the above approach is that the order in which the variables are added to the model influences the outcome, as the effect of each added variable on the model is dependent on the variables previously added.
 
 
-![alt text](/images/2017-7-14_post/IncrementalModel_Stats_1.pdf "Log Box")
+![alt text](/images/2017-7-14_post/IncrementalModel_Stats_1.png "Incremental Model")
 
 
 
