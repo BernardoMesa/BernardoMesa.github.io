@@ -24,7 +24,7 @@ Using scrapy, I scraped information from Box Office Mojo. I focused on collectin
 Since the data was collected in json format, I created a script to transform it into a pandas dataframe and a separate one to clean the data and get it ready for analysis.
 
 
-## <a name="DataExploration"></a>Examining the Dataset
+# <a name="DataExploration"></a>Examining the Dataset
 
 
 From looking at the weekly box office for several movies it seemed apparent that most of the revenue for each movie was made in the first few weeks the movie was shown. This led me to speculate that the number of movies premiered in the same week had an impact on the total gross revenue made at the box office, and accordingly I created a new feature to investigate this theory.
@@ -112,10 +112,32 @@ There does not seem to be a discernable pattern between Box Office Outcomes and 
 # <a name="ModelSection"></a>Developing the Model
 
 
+We are trying to model the log of the Box Office revenue in terms of the particular movie characteristics known prior to the movie premiere.
+
+The initial approach consisted of sistematically adding groupings of features and using sklearn cross validation (5-folds) at each step to verify if the new features increased the explanatory power of the model. We kept in the model those features which increased its explanatory power and did not include those which didn't.
 
 
+The steps
+- Start - Include log of budget - Baseline r2 = 0.16 and MSE = 0.070
+- Add movie duration - both measures deteriorated - Do not include in model.
+- Add number of movies released in the same week - both measures improved - Include in the model.
+- Add the movie studio - both measures deteriorated - Do not include in the model.
+- Add the movie genre - both measures improved - Include in model.
+- Add the movie rating - both measures deteriorated - Do not include in the model.
 
 
+This procedure led us to a model which included the log of the budget, the count of movies released the same week, and the genre, and with a slightly improved r2 of 0.18 and MSE = 0.068.
+
+
+To verify our model satisfied the linear regression assumptions, I created and fitted an equivalent model using Stats Model OLS() method. To this end, I split my data into a training and test set using a 70/30 split, and fitted my model on the training set.
+
+
+ $$ r^2 = \alpha^2 + \beta^2$$
+
+One drawback of the above approach is that the order in which the variables are added to the model influences the outcome, as the effect of each added variable on the model is dependent on the variables previously added.
+
+
+![alt text](/images/2017-7-14_post/IncrementalModel_Stats_1.pdf "Log Box")
 
 
 
