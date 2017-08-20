@@ -118,26 +118,48 @@ The initial approach consisted of sistematically adding groupings of features an
 
 
 The steps
-- Start - Include log of budget - Baseline r2 = 0.16 and MSE = 0.070
-- Add movie duration - both measures deteriorated - Do not include in model.
-- Add number of movies released in the same week - both measures improved - Include in the model.
-- Add the movie studio - both measures deteriorated - Do not include in the model.
-- Add the movie genre - both measures improved - Include in model.
-- Add the movie rating - both measures deteriorated - Do not include in the model.
+1. Start - Include log of budget - Baseline r2 = 0.16 and MSE = 0.070
+2. Add movie duration - both measures deteriorated - Do not include in model.
+3. Add number of movies released in the same week - both measures improved - Include in the model.
+4. Add the movie studio - both measures deteriorated - Do not include in the model.
+5. Add the movie genre - both measures improved - Include in model.
+6. Add the movie rating - both measures deteriorated - Do not include in the model.
 
 
-This procedure led us to a model which included the log of the budget, the count of movies released the same week, and the genre, and with a slightly improved r2 of 0.18 and MSE = 0.068.
+This procedure led us to a model with 31 parameters which included the log of the budget, the count of movies released the same week, and the genre. The model had an slightly improved r2 of 0.18 and MSE = 0.068.
 
 
-To verify our model satisfied the linear regression assumptions, I created and fitted an equivalent model using Stats Model OLS() method. To this end, I split my data into a training and test set using a 70/30 split, and fitted my model on the training set.
+An important step in the development of a linear regression model entails verifying that the model satisfies the linear regression assumptions, including the normality of the residuals and their lack of auto-correlation. I created and fitted an equivalent model using Stats Model OLS() method. To this end, I split my data into a training and test set using a 70/30 split, and fitted my model on the training set.
 
-
- $$ r^2 = \alpha^2 + \beta^2$$
-
-One drawback of the above approach is that the order in which the variables are added to the model influences the outcome, as the effect of each added variable on the model is dependent on the variables previously added.
+The model was not great and explained only about 32% of the variation in the data (adjusted r2 = 0.32). Still, the model had an F statistic of 16 with a p-value < 5% further confirming to us that it is highly unlikely this model fitted the data by chance and at least some of the variables included in the model contribute to explain the dependent variable.
 
 
 ![alt text](/images/2017-7-14_post/IncrementalModel_Stats_1.png "Incremental Model")
+
+
+A visual inspection tells me the model residuals are centered around the mean.
+
+
+![Incremental Model - Residuals Plot](/images/2017-7-14_post/IncModel_residPlot.png "Incremental Model")
+
+
+A Skew of 0.11 and Kurtosis of 2.9 leads me to believe the residuals are normally distributed which is further confirmed by a Jarque-Bera statistic of 2.7 and corresponding p-value of 0.26 (which indicates we cannot reject the null hypothesis of residuals being normally distributed). A Durbin-Watson statistic of 2 tells me there is little evidence the residuals show evidence of auto-correlation.
+
+
+!["Incremental Model - 2nd set of Stats"](/images/2017-7-14_post/IncrementalModel_Stats_2.png "Incremental Model")
+
+
+Next I made predictions based on my testing sample set and plotted the residuals against the predictions and a QQ plot of the residuals. The residual plot and the QQ plot seem to indicate the residuals to be slightly right skewed.
+
+
+![Incremental Model - Prediction Residuals](/images/2017-7-14_post/IncModel_predictResid.png "Incremental Model Prediction residuals")
+
+
+![Incremental Model - Prediction Residuals QQ plot](/images/2017-7-14_post/IncModel_predictResidQQ.png )
+
+
+One drawback of the above approach is that the order in which the variables are added to the model influences the outcome, as the effect of each added variable on the model is dependent on the variables previously added.
+
 
 
 
