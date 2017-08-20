@@ -13,7 +13,8 @@ Better gross revenue estimates and an accurate confidence interval around this e
 
 - [Data Exploration](#DataExploration)
 - [Model Development](#ModelSection)
-
+ - [Incremental Approach](#IncrementalApproach)
+  - [Tuning the model](#TuningIncrementalApproach)
 
 ## The Data - Thanks Box Office Mojo!
 
@@ -112,6 +113,8 @@ There does not seem to be a discernable pattern between Box Office Outcomes and 
 # <a name="ModelSection"></a>Developing the Model
 
 
+## <a name="IncrementalApproach"></a>Incremental Approach
+
 We are trying to model the log of the Box Office revenue in terms of the particular movie characteristics known prior to the movie premiere.
 
 The initial approach consisted of sistematically adding groupings of features and using sklearn cross validation (5-folds) at each step to verify if the new features increased the explanatory power of the model. We kept in the model those features which increased its explanatory power and did not include those which didn't.
@@ -161,7 +164,7 @@ Next I made predictions based on my testing sample set and plotted the residuals
 One drawback of the above approach is that the order in which the variables are added to the model influences the outcome, as the effect of each added variable on the model is dependent on the variables previously added.
 
 
-
+### <a name="TuningIncrementalApproach"></a>Tuning the Incremental Approach Model
 
 
 
