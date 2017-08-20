@@ -57,7 +57,7 @@ Using the describe() method in pandas I found out some interesting facts about t
 A pair plot revealed the distributions of 'Box Office Gross' ('gtd' in the plot) and 'Budget' to be a bit Log Normal. This led me to used their log values in the regression analysis in order to make their distributions more Normal.
 
 
-![alt text](/images/2017-7-14_post/pairPlot.png "Pair Plot")
+![alt text](/images/2017-7-14_post/pairPlot.svg "Pair Plot")
 
 
 In our analysis 'Box Office Gross' (BGO) is our dependent variable. Examining the correlation of BGO with our other variables we can notice a mild positive (+ve) correlation with movie 'Duration' (0.26), stronger +ve correlation to 'Budget' and 'Weeks in Theaters' (0.6 and 0.45 respectively), and a weak negative (-ve) correlation to number of movies premiering in the same week (-0.12). I decided to drop 'Weeks in Theaters' from the analysis, since its seems likely that 'Weeks in Theaters' is not known prior to movie release.
