@@ -29,7 +29,7 @@ From looking at the weekly box office for several movies it seemed apparent that
 Prior to 1999 the dataset has very few movies per year. I decided to only use the movies that started between 1998 and 2016, and whose showing ended by 06/29/2017. That way I am trying to ensure not to include movies that were still being displayed at theaters.
 
 
-![alt text](/images/2017-7-14_post/releasePerYear.png "Movies Released Each Year")
+![alt text](/images/2017-7-14_post/releasePerYear.svg "Movies Released Each Year")
 
 
 ### Characteristics of the movies in the Dataset
@@ -71,13 +71,13 @@ Also, budget and movie duration appear mildly +ve correlated (0.33), which alert
 The mean movie budget seems to have stayed relatively stable at around 50 million, while the its distribution seems to be becoming more right skewed with time with top quartile budgets on an upward trajectory with time.
 
 
-![alt text](/images/2017-7-14_post/budgetVsYear.png "Budget Vs. Year")
+![alt text](/images/2017-7-14_post/budgetVsYear.svg "Budget Vs. Year")
 
 
 BGO distributions are right skewed and the mean budget seems to stay in the 50 to 90 million dollars range through out time.
 
 
-![alt text](/images/2017-7-14_post/gtdVsYear.png "Box Office Gross Vs. Year")
+![alt text](/images/2017-7-14_post/gtdVsYear.svg "Box Office Gross Vs. Year")
 
 
 
