@@ -8,7 +8,7 @@ categories: project
 Movie studios, just as any other commercial enterprise, have limited resources and it is in their interest to be able to accurately estimate the revenue a movie project will generate.
 
 
-Better gross revenue estimates and an accurate confidence interval around this estimate would assist movie studios in raising funds, creating accurate budgets and optimizing their movie pipeline.
+Better gross revenue estimates would assist movie studios in raising funds, creating accurate budgets and optimizing their movie pipeline.
 
 
 - [Data Exploration](#DataExploration)
@@ -18,7 +18,7 @@ Better gross revenue estimates and an accurate confidence interval around this e
   - [Elastic Net Regularization](#ElasticRegularization)
   - [Lasso Regularization](#LassoRegularization)
 - [Which Model to Choose?](#IncrementalVsRegularization)
-- [What is next](#WhatIsNext)
+- [Further Work](#WhatIsNext)
 ## The Data - Thanks Box Office Mojo!
 
 
@@ -179,7 +179,7 @@ Doing this results in a simplified model with 12 features and an slightly lower 
 ![Simplified Incremental Model](/images/2017-7-14_post/SimplifiedIncModelSummary.png )
 
 
-Now, maybe we could have achieved similar simplified results using regularization.
+Now, maybe we could have achieved similar or more simplified results using regularization.
 
 
 ## <a name="ElasticRegularization"></a>Using Elastic Net regularization to generate our Model
@@ -199,6 +199,7 @@ The resulting model kept 26 features, out of our initial 32.
 
 ## <a name="LassoRegularization"></a>Using Lasso regularization to generate our Model
 
+
 I decided to see if a linear model with only **Lasso** regularization would generate a less complex model (drive the coefficient of more features to zero) so I followed a similar lasso parameter selection procedure as when developing my **Elastic Net** model, and found out that an L1 value of 1e-4 would produce the highest average r2 and lowest average mse across cross-validations.
 
 
@@ -207,17 +208,18 @@ I decided to see if a linear model with only **Lasso** regularization would gene
 
 I compared the coefficient values of both the model obtained with Elastic Net regularization against the coefficients obtained using Lasso, and to my surprise, they were equal.
 
+
 Neither regularization technique was able to simplify the model as much as our Initial *Incremental Approach*  procedure did.
 
 
 ![Regularized Model Coeffs](/images/2017-7-14_post/Reg_Coeffs.png )
 
 
-## <a name="IncrementalVsRegularization"></a>Which model to use?
-## Regularized model or Incremental Approach model
+## <a name="IncrementalVsRegularization"></a>Which model to use?\nRegularized model or Incremental Approach model
 
 
 The only thing to do was to compare the performance of our **Regularized** model against or **Incremental Approach** model, and see if we gain performance by including more features in our model.
+
 
 I evaluated the performance of the **Incremental Approach** model using 5 fold cross validation and found that performance was very similar to that of the **Regularized** models (equal to the second decimal point in both r2 and mse), so until I find evidence that the more complex models would perform better, I would be inclined to choose the **Incremental Approach** model to reduce complexity.
 
@@ -225,10 +227,13 @@ I evaluated the performance of the **Incremental Approach** model using 5 fold c
 ## <a name="WhatIsNext"></a>Further Work
 
 
+After exhausting the possibilities with our current feature set and still not achieving a satisfactory 'r2' and 'mse', our next step would be to do some feature engineering and develop new features that can help better explain the variability in the data.
 
 
+Also, it might be worth investigating if the weekly total domestic gross revenue could be modelled as an exponentially decaying function, estimate its parameters and use this model to estimate total gross domestic revenue.
 
 
+A big portion of the total gross revenue is made in the first weeks of the movie being shown. Using this information should improve the estimate of the total gross revenue, and could help executives plan for events after premiering the movie like the number of theaters to show the movie, how long to keep the movie on theaters, and how soon to make it available in other media like DVD's and TV networks.
 
 
 
