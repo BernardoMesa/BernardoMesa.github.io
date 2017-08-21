@@ -18,6 +18,7 @@ Better gross revenue estimates and an accurate confidence interval around this e
   - [Elastic Net Regularization](#ElasticRegularization)
   - [Lasso Regularization](#LassoRegularization)
 - [Which Model to Choose?](#IncrementalVsRegularization)
+- [What is next](#WhatIsNext)
 ## The Data - Thanks Box Office Mojo!
 
 
@@ -184,10 +185,10 @@ Now, maybe we could have achieved similar simplified results using regularizatio
 ## <a name="ElasticRegularization"></a>Using Elastic Net regularization to generate our Model
 
 
-With Elastic Net regularization we need to set the two parameters (alpha and L1) that will penalize our model inclusion of features. To do this effectively I set up a grid to cycle through several combinations of alpha and L1 in a range of values between 1e-5 and 100, created a model for each pair of values, evaluated each model using a 5-fold cross-validation and computedfor each model the mean r2 and mse across cross-validations.
+With **Elastic Net** regularization we need to set the two parameters (alpha and L1) that will penalize our model inclusion of features. To do this effectively I set up a grid to cycle through several combinations of alpha and L1 in a range of values between 1e-5 and 100, created a model for each pair of values, evaluated each model using a 5-fold cross-validation and computed for each model the average r2 and mse across cross-validations.
 
 
-After doing this the best model (highest mean r2 and lowest average mse) was generated with an alpha of 1e-4 and L1 of 1. Its r2 was 0.19 and mse was 0.069.
+After doing this the best model (highest average r2 and lowest average mse) was generated with an alpha of 1e-4 and L1 of 1. Its r2 was 0.19 and mse was 0.069.
 
 
 The resulting model kept 26 features, out of our initial 32.
@@ -198,7 +199,7 @@ The resulting model kept 26 features, out of our initial 32.
 
 ## <a name="LassoRegularization"></a>Using Lasso regularization to generate our Model
 
-I decided to see if a linear model with only Lasso regularization would generate a less complex model (drive the coefficient of more features to zero) so I followed a similar lasso parameter selection procedure as when developing my Elastic Net model, and found out that an L1 value of 1e-4 would produce the highest mean r2 and mse across cross-validations.
+I decided to see if a linear model with only **Lasso** regularization would generate a less complex model (drive the coefficient of more features to zero) so I followed a similar lasso parameter selection procedure as when developing my **Elastic Net** model, and found out that an L1 value of 1e-4 would produce the highest average r2 and lowest average mse across cross-validations.
 
 
 ![Lasso cross-val performance](/images/2017-7-14_post/Lasso_r2_mse.png )
@@ -212,14 +213,16 @@ Neither regularization technique was able to simplify the model as much as our I
 ![Regularized Model Coeffs](/images/2017-7-14_post/Reg_Coeffs.png )
 
 
-## <a name="IncrementalVsRegularization"></a>Which model to use? Regularized models or Incremental Approach model.
+## <a name="IncrementalVsRegularization"></a>Which model to use?
+## Regularized model or Incremental Approach model
 
 
-The only thing to do was to compare the performance of our cross validation model against or Incremental Approach model, and see if we gain performance by including more features in our model.
+The only thing to do was to compare the performance of our **Regularized** model against or **Incremental Approach** model, and see if we gain performance by including more features in our model.
 
-I evaluated the performance of the *Incremental Approach* model using 5 fold cross validation and found that performance was very similar to that of the regularized models (equal to the second decimal point in both r2 and mse), so until I find evidence that the more complex models would perform better, I would be inclined to choose the *Incremental Approach* model to reduce complexity.
+I evaluated the performance of the **Incremental Approach** model using 5 fold cross validation and found that performance was very similar to that of the **Regularized** models (equal to the second decimal point in both r2 and mse), so until I find evidence that the more complex models would perform better, I would be inclined to choose the **Incremental Approach** model to reduce complexity.
 
 
+## <a name="WhatIsNext"></a>Further Work
 
 
 
