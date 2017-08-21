@@ -13,9 +13,11 @@ Better gross revenue estimates and an accurate confidence interval around this e
 
 - [Data Exploration](#DataExploration)
 - [Model Development](#ModelSection)
- - [Incremental Approach](#IncrementalApproach)
-  - [Tuning the model](#TuningIncrementalApproach)
-
+  - [Incremental Approach](#IncrementalApproach)
+    - [Tuning the model](#TuningIncrementalApproach)
+  - [Elastic Net Regularization](#ElasticRegularization)
+  - [Lasso Regularization](#LassoRegularization)
+- [Which Model to Choose?](#IncrementalVsRegularization)
 ## The Data - Thanks Box Office Mojo!
 
 
@@ -91,7 +93,7 @@ BGO distributions are right skewed and the mean budget seems to stay in the 50 t
 ![alt text](/images/2017-7-14_post/gtdVsYear.svg "Box Office Gross Vs. Year")
 
 
-### Movie Premiere condition
+### Movie Premiere conditions
 
 
 Box Office distribution grouped by number of movies released in a week seem to shift lower as more movies are launched the same week. The mean of the distributions seems to remain in the 10^(7.75) to 10^8 range independently of the number of movies launched in the week.
@@ -119,15 +121,15 @@ We are trying to model the log of the Box Office revenue in terms of the particu
 
 The initial approach consisted of sistematically adding groupings of features and using sklearn cross validation (5-folds) at each step to verify if the new features increased the explanatory power of the model. We kept in the model those features which increased its explanatory power and did not include those which didn't.
 
-
-The steps
+```
+The steps:
 1. Start - Include log of budget - Baseline r2 = 0.16 and MSE = 0.070
 2. Add movie duration - both measures deteriorated - Do not include in model.
 3. Add number of movies released in the same week - both measures improved - Include in the model.
 4. Add the movie studio - both measures deteriorated - Do not include in the model.
 5. Add the movie genre - both measures improved - Include in model.
 6. Add the movie rating - both measures deteriorated - Do not include in the model.
-
+```
 
 This procedure led us to a model with 31 parameters which included the log of the budget, the count of movies released the same week, and the genre. The model had an slightly improved r2 of 0.18 and MSE = 0.068.
 
@@ -167,8 +169,55 @@ One drawback of the above approach is that the order in which the variables are 
 ### <a name="TuningIncrementalApproach"></a>Tuning the Incremental Approach Model
 
 
+A reasonable simplication to the Incremental Approach model is to drop all those feature coefficients for which their p-values are greater than 0.05 (we cannot reject the hypothesis that these coefficients are different than zero).
 
 
+Doing this results in a simplified model with 12 features and an slightly lower adjusted r2 than our initial larger model (0.319 Vs. 0.32), and still satisfying our linear regression assumptions of residuals normality and lack of autocorrelation.
+
+
+![Simplified Incremental Model](/images/2017-7-14_post/SimplifiedIncModelSummary.png )
+
+
+Now, maybe we could have achieved similar simplified results using regularization.
+
+
+## <a name="ElasticRegularization"></a>Using Elastic Net regularization to generate our Model
+
+
+With Elastic Net regularization we need to set the two parameters (alpha and L1) that will penalize our model inclusion of features. To do this effectively I set up a grid to cycle through several combinations of alpha and L1 in a range of values between 1e-5 and 100, created a model for each pair of values, evaluated each model using a 5-fold cross-validation and computedfor each model the mean r2 and mse across cross-validations.
+
+
+After doing this the best model (highest mean r2 and lowest average mse) was generated with an alpha of 1e-4 and L1 of 1. Its r2 was 0.19 and mse was 0.069.
+
+
+The resulting model kept 26 features, out of our initial 32.
+
+
+![Elast Net cross-val performance](/images/2017-7-14_post/Elast_Net_r2_mse.png )
+
+
+## <a name="LassoRegularization"></a>Using Lasso regularization to generate our Model
+
+I decided to see if a linear model with only Lasso regularization would generate a less complex model (drive the coefficient of more features to zero) so I followed a similar lasso parameter selection procedure as when developing my Elastic Net model, and found out that an L1 value of 1e-4 would produce the highest mean r2 and mse across cross-validations.
+
+
+![Lasso cross-val performance](/images/2017-7-14_post/Lasso_r2_mse.png )
+
+
+I compared the coefficient values of both the model obtained with Elastic Net regularization against the coefficients obtained using Lasso, and to my surprise, they were equal.
+
+Neither regularization technique was able to simplify the model as much as our Initial *Incremental Approach*  procedure did.
+
+
+![Regularized Model Coeffs](/images/2017-7-14_post/Reg_Coeffs.png )
+
+
+## <a name="IncrementalVsRegularization"></a>Which model to use? Regularized models or Incremental Approach model.
+
+
+The only thing to do was to compare the performance of our cross validation model against or Incremental Approach model, and see if we gain performance by including more features in our model.
+
+I evaluated the performance of the *Incremental Approach* model using 5 fold cross validation and found that performance was very similar to that of the regularized models (equal to the second decimal point in both r2 and mse), so until I find evidence that the more complex models would perform better, I would be inclined to choose the *Incremental Approach* model to reduce complexity.
 
 
 
