@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2017-09-22 -0500
-title: Do fitbits work?
+title: Human Activity Recognition - Do fitbits work?
 categories: project
 ---
 
