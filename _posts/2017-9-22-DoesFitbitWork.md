@@ -157,12 +157,6 @@ Since previously, forests with depth higher than 15 seemed to be prone to overfi
 
 
 
-{'learning_rate': [0.1, 0.2],
- 'max_depth': [5, 10, 15, 30],
- 'max_features': [6, 9],
- 'n_estimators': [10, 15, 20]}
-
-
 
 
 ## References:
