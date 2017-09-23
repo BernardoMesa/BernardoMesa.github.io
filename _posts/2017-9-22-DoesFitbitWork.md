@@ -62,7 +62,7 @@ I want to see if we could achieve greater than 90% accuracy across each activity
         }
 </style>
 
-| %            | **Accuracy** | **f-1 Score** |
+|              | **Accuracy** | **f-1 Score** |
 |--------------|--------------|---------------|
 | KNN          | 99           | 99            |
 | gaussNB      | 75           | 75            |
@@ -77,7 +77,8 @@ Given the poor results obtained by the Naive Bayes classifier I decide to drop e
 To further check the possibility of overfitting the data, I separated my data into a training and test set using a 66/33 split, fitted the classifiers on the training set and evaluated the precision, recall and f1-score for each class on the test set. 
 
 #### Results for KNN
-**precision**|**recall**|**f1-score**|**support**|
+
+|**class**|**precision**|**recall**|**f1-score**|
 :-----:|:-----:|:-----:|:-----:|
 1|1.00|1.00|1.00|
 2|1.00|1.00|1.00|
@@ -141,7 +142,7 @@ When using two sensors we observed a similar behaviour as before but with an acc
 
 Increasing the number of trees in the Random Forest is an effective way to reduce variance caused by model overfitting, but in our case our learning curves did not indicate that we were overfitting on our. I checked anyway just in case, and confirmed my initial thoughts. I trained several RFs of depth 15, with just the Hand sensors, with several number of estimators and did not achieve an increase in test set accuracy.
 
-![alt text](/images/2017-9-22_post/RF_Ankle_NumEstimators_LearningCurve.png.png "Random Forest - Ankle Sensor - Accuracy - Vary Number of Estimators - Learning Curves")
+![alt text](/images/2017-9-22_post/RF_Ankle_NumEstimators_LearningCurve.png "Random Forest - Ankle Sensor - Accuracy - Vary Number of Estimators - Learning Curves")
 
 
 ## Is all hope lost? Can we improve accuracy of a single sensor classifier above 90%
