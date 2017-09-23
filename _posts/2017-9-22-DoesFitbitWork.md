@@ -9,9 +9,9 @@ My goal is to determine if it is feasible that wearable devices can be used to d
 
 The increase in living standards in our society has brought some mixed blessings. On one hand we have abundant food supplies (in some parts of the world) and we tend to live longer, but on the other hand, our sedentary lifestyle has lead to an obesity epidemic and seems linked to sharp decreases in quality of life during our golden years.
 
- With the advent of wearable devices (i.e fitbit), the field of human activity recognition (HAR) has gotten a boost. Our hope is that accurate monitoring of human activity will lead us to better understanding of the link between a sedentary lifestyle and its effects on our health, and also we hope that it should allow us to gently nudge individuals towards a more active lifestyles by means of monitoring and positive reinforcement.
+With the advent of wearable devices (i.e fitbit), the field of human activity recognition (HAR) has gotten a boost. Our hope is that accurate monitoring of human activity will lead us to better understanding of the link between a sedentary lifestyle and its effects on our health, and also we hope that it should allow us to gently nudge individuals towards a more active lifestyles by means of monitoring and positive reinforcement.
 
- One of the many challenge is to be able to determine an activity is being performed across individuals. For example, we all run slightly differently, and given our difference in body sizes our range of motions are different.
+One of the many challenge is to be able to determine an activity is being performed across individuals. For example, we all run slightly differently, and given our difference in body sizes our range of motions are different.
 
 
 # The Dataset
@@ -25,6 +25,7 @@ One of the inertial devices was worn on the ankle, another one on the wrist, and
 
 
 Information about this dataset can be found in the reference at the end of this article and here: http://archive.ics.uci.edu/ml/datasets/pamap2+physical+activity+monitoring
+
 
 ## Preparing the data
 
@@ -62,12 +63,14 @@ I want to see if we could achieve greater than 90% accuracy across each activity
         }
 </style>
 
+
 |              | **Accuracy** | **f-1 Score** |
 |--------------|--------------|---------------|
 | KNN          | 99           | 99            |
 | gaussNB      | 75           | 75            |
 | RandomForest | 99           | 99            |
 {: .tablelines}
+
 
 
 Using the default settings for scikit-learn KNN uses 10 neighbors, and random forest algorithm depth is automatically determined so that all leaves in the trees end with one class. This can lead to overfitting, which I suspect is what is happening here with our default KNN and RandomForest classifiers.
@@ -77,6 +80,7 @@ Given the poor results obtained by the Naive Bayes classifier I decide to drop e
 To further check the possibility of overfitting the data, I separated my data into a training and test set using a 66/33 split, fitted the classifiers on the training set and evaluated the precision, recall and f1-score for each class on the test set. 
 
 #### Results for KNN
+
 
 |**class**|**precision**|**recall**|**f1-score**|
 :-----:|:-----:|:-----:|:-----:|
@@ -95,13 +99,13 @@ To further check the possibility of overfitting the data, I separated my data in
 avg/total|1.00|1.00|1.00|
 {: .tablelines}
 
+
 I obtained similar results for my Random Forest classifier. Having 100% precision and recall across all classes increases my suspicions that we are overfitting the training data, and decide to generate learning curves for both classifiers.
 
 ## Learning Curves
 
 
 Using features from all sensors, I generated learning curves for my Random Forest classifier where I varied the maximum allowed depth to a value in the range 15 to 35, and did the same for the KNN classifier by varying the number of neighbors to a value in the range 15 to 45.
-
 
 ![alt text](/images/2017-9-22_post/RF_Accuracy_LearningCurve.png "Random Forest Accuracy Learning Curves")
 
@@ -114,7 +118,6 @@ Unfortunately it seems that increasing the size of our training set won't provid
 I also checked that the precision, recall and f1 score of the Random Forest classifier with max depth of 15 also showed behaviour consistent with a model that was not overfitting the data and was learning as the size of the training data increased.
 
 ![alt text](/images/2017-9-22_post/RF_MaxDepth15_LearningCurve.png "Random Forest - Depth: 15 - Precision/Recall/F1 Scores - Learning Curve")
-
 
 ### What about the learning curve for the K-Neighbors classifier?
 
@@ -131,9 +134,7 @@ I repeated the previous experiment and graphed learning curves for RF classifier
 
 ![alt text](/images/2017-9-22_post/RF_Hand_accuracy_LearningCurve.png "Random Forest - Hand Sensor - Accuracy - Learning Curves")
 
-
 When using two sensors we observed a similar behaviour as before but with an accuracy between 88% and 91%.
-
 
 ![alt text](/images/2017-9-22_post/RF_Hand&Chest_accuracy_LearningCurve.png "Random Forest - Hand & Chest Sensors - Accuracy - Learning Curves")
 
@@ -142,7 +143,8 @@ When using two sensors we observed a similar behaviour as before but with an acc
 
 Increasing the number of trees in the Random Forest is an effective way to reduce variance caused by model overfitting, but in our case our learning curves did not indicate that we were overfitting on our. I checked anyway just in case, and confirmed my initial thoughts. I trained several RFs of depth 15, with just the Hand sensors, with several number of estimators and did not achieve an increase in test set accuracy.
 
-![alt text](/images/2017-9-22_post/RF_Ankle_NumEstimators_LearningCurve.png "Random Forest - Ankle Sensor - Accuracy - Vary Number of Estimators - Learning Curves")
+
+![alt text](/images/2017-9-22_post/RF_Hand_NumEstimators_LearningCurve.png "Random Forest - Hand Sensor - Accuracy - Vary Number of Estimators - Learning Curves")
 
 
 ## Is all hope lost? Can we improve accuracy of a single sensor classifier above 90%
