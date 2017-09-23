@@ -21,7 +21,7 @@ To test the theory that we can use the sensor signals in wearable devices to det
 One of the inertial devices was worn on the ankle, another one on the wrist, and another around the chest area.
 
 
-![alt text](/images/2017-9-22_post/human.jpg "Sensor Placement")
+![alt text](/images/2017-9-22_post/human.png "Sensor Placement")
 
 
 Information about this dataset can be found in the reference at the end of this article and here: http://archive.ics.uci.edu/ml/datasets/pamap2+physical+activity+monitoring
