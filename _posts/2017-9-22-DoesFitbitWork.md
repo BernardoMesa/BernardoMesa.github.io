@@ -155,7 +155,7 @@ I decided to run a parameter grid search with 5-fold cross-validation training o
 
 Since previously, forests with depth higher than 15 seemed to be prone to overfitting, I set up the grid depth to try the values: 5, 10, 15, and 30 just in case. Also given that we had no guidance on the learning rate I decided to try the default rate of 0.1 and double that amount. For the number of estimators, I decided to try few stages: 10, 15, and 20 given that the GBC is very time consuming to train.
 
-Now... I will update this post with the results of the grid search and possible next steps when it finishes running. I killed my AWS instance and had to run this grid search on my laptop.
+Now... I will update this post with the results of the grid search and possible next steps when it finishes running. I inadvertently killed my AWS instance and had to run this grid search on my laptop.
 
 Stay tuned!
 
