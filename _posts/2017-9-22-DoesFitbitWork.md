@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2017-09-22 -0500
-title: Can a wearable device really tell what you are doing?
+title: Do fitbits work?
 categories: project
 ---
 
