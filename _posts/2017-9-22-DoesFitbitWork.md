@@ -4,6 +4,9 @@ date: 2017-09-22 -0500
 title: Human Activity Recognition - Do fitbits work?
 categories: project
 ---
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
 My goal is to determine if it is feasible that wearable devices can be used to determine what activities you are doing, or if we are just being fed a nice story to sell us yet another useless piece of electronics.
 
