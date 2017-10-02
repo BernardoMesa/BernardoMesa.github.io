@@ -147,15 +147,17 @@ Increasing the number of trees in the Random Forest is an effective way to reduc
 ![alt text](/images/2017-9-22_post/RF_Hand_NumEstimators_LearningCurve.png "Random Forest - Hand Sensor - Accuracy - Vary Number of Estimators - Learning Curves")
 
 
-## Is all hope lost? Can we improve accuracy of a single sensor classifier above 90%
+## Is all hope lost?
+## Can we improve accuracy of a single sensor classifier above 90%
 
-### Try boosting! Bring allong our friend Gradient Boosting Classifier.
+### Try boosting!
+### Bring allong our friend Gradient Boosting Classifier.
 
 I decided to run a parameter grid search with 5-fold cross-validation training only on the hand sensor parameters. I chose the hand sensor given that individuals already wear wrist devices (watch) and it wouldn't be hard to incorporate an extra sensor in the electronics.
 
-As we found previously, forests with depth higher than 15 seemed to be prone to overfitting, I set up the grid depth to try the values: 5, 10, 15, and 30 just in case. Also given that we had no guidance on the learning rate I decided to try the default rate of 0.1 and double that amount. For the number of estimators, I decided to try few stages: 10, 15, and 20 given that the GBC is very time consuming to train.
+As we found previously, forests with depth greater than 15 seemed to be prone to overfitting. I set up the grid depth to try the maximum tree depth values: 5, 10, 15, and 30 just in case. Also given that we had no guidance on the learning rate I decided to try the default rate of 0.1 and double that amount. For the number of estimators, I decided to try few stages: 10, 15, and 20 given that the GBC is very time consuming to train.
 
-Now... I will update this post with the results of the grid search and possible next steps when it finishes running. I inadvertently killed my AWS instance and had to run this grid search on my laptop.
+Now... I will update this post with the results of the grid search and possible next steps when it finishes running. I inadvertently killed my AWS instance and have to run this grid search on my 4 core Mac.
 
 Stay tuned!
 
@@ -164,16 +166,29 @@ Day 2... waiting...
 Day 3... waiting...
 Day 4... waiting...
 
-After 4 days of running the grid search on my 4 core Mac, I grew impatient and realized I would not be able to run my analysis in a reasonable amount of time. Relaunching my AWS instance became an imperative. After a few hours of tinkering in AWS I had setup an environment, and I was ready to continue my analysis. I set up the previous gridsearch to run on a 40 core instance. After 5 hours at a couple of bucks an hour I learned about the lightGBM algorithmand set it to runI did a bit of research regarding Boosting algorithms and a good friend of mine suggested I used lightGBM
+After 4 days of running the grid search on my 4 core Mac, I grew impatient and realized I would not be able to run my analysis in a reasonable amount of time. Relaunching my AWS instance became an imperative. After a few hours of tinkering in AWS I had setup a new environment, and I was ready to continue my analysis. I set up the previous gridsearch to run on a 40 core instance.
 
+![alt text](/images/2017-9-22_post/htop_40_core.png "Gradient Boosting Classifier Grid Search running on 40 core AWS instance")
+
+
+### Try the lightGBM boosting algorithm.
+While running the Gradient Boosting Classifier, I researched other alternatives. XGBoost and lightGBM are two popular options, with lightGBM having similar performance to XGBoost, but being 10 to 15 times faster than XGBoost.
+
+After running the Gradient Boosting Clasiffier grid search for 5 hours, I stopped the computation and set up the grid search to run using the lightGBM algorith. This time I  about the lightGBM algorithm which is supposed to be much and set it to runI did a bit of research regarding Boosting algorithms and a good friend of mine suggested I used lightGBM
+
+24 hours and $100 later, the lightGBM grid search had not finished. I stopped it and took stock of what I had tried so far, and the options I had left. Running grid searches with boosting algorithms did not turn out to be very cost or time efficient.
 
 
 ### Try feature engineering!
 
 
-Running exhaustive grid searchs using the Gradient Boosting Classifier, and even when running the much faster lightGBM algorithm, were extremely time consumming. After running 4 days straight, I stopped the process, and decided it was time to try some feature engineering to see if we could achieve an accuracy of greater than 90% with only the Hand sensor.
+After wasting about 6 days running grid searches, I decided it was time to try some feature engineering to see if we could achieve an accuracy of greater than 90% with only the Hand sensor.
 
 I calculated the pitch, roll, and norm from the x-axis, y-axis, z-axis raw accelerometer data. Also, to capture the temporal nature of the data I segmented the data into windows of various lenghts and calculated the mean and variance of the signals within each window.
+
+\begin{equation}
+  a^2+b^2=c^2
+\end{equation}
 
 Using windows of size 4, 8, 16, 32 and 64 I evaluated the learning curves of trees of maximum depth 15, 20, 25, and 35. As we found earlier, trees with depth greater than 15 were overfitting, and the accuracy of the model did not surpass 85% with any of the windows.. Below is the image of the learning curves for the model when using a window of size 16.
 
