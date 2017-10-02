@@ -187,6 +187,8 @@ After wasting about 6 days running grid searches, I decided it was time to try s
 
 I calculated the pitch, roll, and norm from the x-axis, y-axis, z-axis raw accelerometer data. Also, to capture the temporal nature of the data I segmented the data into windows of various lenghts and calculated the mean and variance of the signals within each window.
 
+$$ 5 + 5 $$
+
 $$
 \begin{align*}
   & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
