@@ -8,6 +8,7 @@ categories: project
 
 My goal is to determine if it is feasible that wearable devices can be used to determine what activities you are doing.
 
+<a name="PreparingData"></a>
 <a name="Top"></a>
 
 - [The Dataset](#TheDataset)
@@ -30,7 +31,7 @@ With the advent of wearable devices (i.e., Fitbit), the field of human activity 
 
 Activity identification presents many challenges, one being how to account for the differences in body sizes which leads to individuals displaying different ranges of motion when performing any one activity.
 
-
+[Top](#Top)
 # <a name="TheDataset"></a>The Dataset
 
 I set out to test if we can use the sensor signals in wearable devices to determine what activity we are performing. To do this, I used a dataset that comprised the data from 18 different activities, performed by nine individuals wearing three inertial devices.
@@ -47,7 +48,7 @@ Information about this dataset can be found in the reference at the end of this 
 
 After importing the data, I dropped the features that included individual identifier information and features different from motion or inertia (i.e., subject, heart vari, temperature). I also dropped the information from a second accelerometer in each device that tended to saturate (the range of accelerations detected was too small for some high impact activities such as running), and I also dropped the information from a magnetometer deemed irrelevant by the researchers that collected the data.
 
-[Top](#Top)
+
 ## <a name="ExploringData"></a>Exploring the Data
 
 The data comprised a total of approximately 1.9 million samples distributed across 12 activities and nine subjects.
@@ -65,7 +66,7 @@ The number of sample per activity ranged from 47 thousand (jumping rope) to 230 
 [Top](#Top)
 # <a name="TheProcess"></a>The Process
 
-[Top](#Top)
+
 ## <a name="Baseline"></a>Establishing a Baseline
 
 Before doing any feature engineering, I wanted to establish a baseline by measuring the average accuracy of three different algorithms using 5-fold stratified cross-validation across the entire dataset using all remaining sensor features.
@@ -143,7 +144,7 @@ I also checked that the precision, recall and f1 score of the Random Forest clas
 
 On second thought I decided not to generate the learning curves given that the process was very time consuming and I was hitting a deadline. On top of that, it seemed to me that the KNN Classifier code would be bigger than the code for the Random Forest classifier because it has to store the dataset it is trained on to make predictions, which would make it less desirable for wearable devices likely to have memory and processor constraints.
 
-[Top](#Top)
+
 ## <a name="OneSensor"></a>What would the performance be if we used one sensor?
 
 When using all sensors and a random forest with depth 15, we achieved an accuracy of 94% on the test set.
@@ -165,7 +166,7 @@ Increasing the number of trees in the Random Forest is an effective way to reduc
 
 ![alt text](/images/2017-9-22_post/RF_Hand_NumEstimators_LearningCurve.png "Random Forest - Hand Sensor - Accuracy - Vary Number of Estimators - Learning Curves")
 
-[Top](#Top)
+
 ### <a name="Boosting"></a>Boosting! Increasing single sensor accuracy above 90%
 
 Boosting is a technique that combines weak learners in such a way to generate an overall strong learner, and has been successfully used in hackathons and Kaggle competitions to achieve increases in accuracy. There are a variety flavors, each with its pros and cons. To start, I decided to run a parameter grid search with 5-fold cross-validation using sklearn's Gradient Boosting Classifier (GBC). I decided to focus on using data from the hand sensor given that individuals already wear wrist devices (watch) and it wouldn't be hard to incorporate an extra sensor in the electronics.
