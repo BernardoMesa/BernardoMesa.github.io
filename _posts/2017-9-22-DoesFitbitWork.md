@@ -130,11 +130,11 @@ When using all sensors and a random forest with depth 15, we achieved an accurac
 
 Given that a system involving multiple sensors worn on separate parts of the body (separate devices) is more uncomfortable to use, and present extra technical challenges such as synchronizing the data from the 3 separate devices, it would be interesting to find out if we could get away with using only one sensor and achieve a performance above 90%
 
-I repeated the previous experiment and graphed learning curves for RF classifiers of different depths trained only one the data from one sensor (ankle, hand or chest), and found a similar behaviour as before (the classifiers tended to overfit for depths greater than 15) but with accuracies on the test data around 82-83%.
+I repeated the previous experiment and graphed learning curves for RF classifiers of different depths trained only one the data from one sensor (ankle, hand or chest), and found a similar behaviour as before (the classifiers tended to overfit for depths greater than 15) but with accuracies on the test data around 82-83%. Below we can see the learning curve for the model being trained only on Hand sensor data.
 
 ![alt text](/images/2017-9-22_post/RF_Hand_accuracy_LearningCurve.png "Random Forest - Hand Sensor - Accuracy - Learning Curves")
 
-When using two sensors we observed a similar behaviour as before but with an accuracy between 88% and 91%.
+When using two sensors we observed a similar behaviour as before but with an accuracy between 88% and 91%. Below we can see the learning curve for the model being trained on Hand and Chest sensor data.
 
 ![alt text](/images/2017-9-22_post/RF_Hand&Chest_accuracy_LearningCurve.png "Random Forest - Hand & Chest Sensors - Accuracy - Learning Curves")
 
@@ -153,11 +153,34 @@ Increasing the number of trees in the Random Forest is an effective way to reduc
 
 I decided to run a parameter grid search with 5-fold cross-validation training only on the hand sensor parameters. I chose the hand sensor given that individuals already wear wrist devices (watch) and it wouldn't be hard to incorporate an extra sensor in the electronics.
 
-Since previously, forests with depth higher than 15 seemed to be prone to overfitting, I set up the grid depth to try the values: 5, 10, 15, and 30 just in case. Also given that we had no guidance on the learning rate I decided to try the default rate of 0.1 and double that amount. For the number of estimators, I decided to try few stages: 10, 15, and 20 given that the GBC is very time consuming to train.
+As we found previously, forests with depth higher than 15 seemed to be prone to overfitting, I set up the grid depth to try the values: 5, 10, 15, and 30 just in case. Also given that we had no guidance on the learning rate I decided to try the default rate of 0.1 and double that amount. For the number of estimators, I decided to try few stages: 10, 15, and 20 given that the GBC is very time consuming to train.
 
 Now... I will update this post with the results of the grid search and possible next steps when it finishes running. I inadvertently killed my AWS instance and had to run this grid search on my laptop.
 
 Stay tuned!
+
+Day 1... waiting...
+Day 2... waiting...
+Day 3... waiting...
+Day 4... waiting...
+
+After 4 days of running the grid search on my 4 core Mac, I grew impatient and realized I would not be able to run my analysis in a reasonable amount of time. Relaunching my AWS instance became an imperative. After a few hours of tinkering in AWS I had setup an environment, and I was ready to continue my analysis. I set up the previous gridsearch to run on a 40 core instance. After 5 hours at a couple of bucks an hour I learned about the lightGBM algorithmand set it to runI did a bit of research regarding Boosting algorithms and a good friend of mine suggested I used lightGBM
+
+
+
+### Try feature engineering!
+
+
+Running exhaustive grid searchs using the Gradient Boosting Classifier, and even when running the much faster lightGBM algorithm, were extremely time consumming. After running 4 days straight, I stopped the process, and decided it was time to try some feature engineering to see if we could achieve an accuracy of greater than 90% with only the Hand sensor.
+
+I calculated the pitch, roll, and norm from the x-axis, y-axis, z-axis raw accelerometer data. Also, to capture the temporal nature of the data I segmented the data into windows of various lenghts and calculated the mean and variance of the signals within each window.
+
+Using windows of size 4, 8, 16, 32 and 64 I evaluated the learning curves of trees of maximum depth 15, 20, 25, and 35. As we found earlier, trees with depth greater than 15 were overfitting, and the accuracy of the model did not surpass 85% with any of the windows.. Below is the image of the learning curves for the model when using a window of size 16.
+
+
+![alt text](/images/2017-9-22_post/RF_Hand_FeatureEng_Win16_LearningCurve.png "Random Forest - Hand Sensor - Feature Engineering - Learning Curves")
+
+
 
 
 ## References:
