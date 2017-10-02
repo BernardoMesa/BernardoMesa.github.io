@@ -18,8 +18,8 @@ My goal is to determine if it is feasible that wearable devices can be used to d
     - [Learning Curves](#LearningCurves)
   - [Using one Sensor](#OneSensor)
     - [Increasing the Forest Size](#IncreaseTrees)
-    - [Boosting!](#Boosting)
-    - [Feature Engineering!](#FeatureEngineering)
+    - [Boosting](#Boosting)
+    - [Feature Engineering](#FeatureEngineering)
 - [Conclusion](#Conclusion)
 
 
@@ -165,7 +165,7 @@ Increasing the number of trees in the Random Forest is an effective way to reduc
 ![alt text](/images/2017-9-22_post/RF_Hand_NumEstimators_LearningCurve.png "Random Forest - Hand Sensor - Accuracy - Vary Number of Estimators - Learning Curves")
 
 
-### <a name="Boosting"></a>Boosting! Increasing single sensor accuracy above 90%
+### <a name="Boosting"></a>Boosting!
 [Top](#Top)
 Boosting is a technique that combines weak learners in such a way to generate an overall strong learner, and has been successfully used in hackathons and Kaggle competitions to achieve increases in accuracy. There are a variety flavors, each with its pros and cons. To start, I decided to run a parameter grid search with 5-fold cross-validation using sklearn's Gradient Boosting Classifier (GBC). I decided to focus on using data from the hand sensor given that individuals already wear wrist devices (watch) and it wouldn't be hard to incorporate an extra sensor in the electronics.
 
@@ -196,7 +196,7 @@ The lightGBM grid search was not finished after running for 24 hours. The messag
 I stopped the grid search and took stock of what I had tried so far and of the options I had left. My first forest using boosting algorithms had not turned out to be very cost or time efficient. 
 
 
-### <a name="FeatureEngineering"></a>Try feature engineering!
+### <a name="FeatureEngineering"></a>Try Feature Engineering!
 [Top](#Top)
 After a disappointing six days of waiting, I decided it was time to try some feature design to see if we could achieve an accuracy of greater than 90% with only the hand sensor.
 
