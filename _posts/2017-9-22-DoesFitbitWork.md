@@ -3,9 +3,6 @@ layout: post
 date: 2017-09-22 -0500
 title: Human Activity Recognition - Do fitbits work?
 categories: project
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
 ---
 
 
