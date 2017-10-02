@@ -8,6 +8,8 @@ categories: project
 
 My goal is to determine if it is feasible that wearable devices can be used to determine what activities you are doing.
 
+<a name="Top"></a>
+
 - [The Dataset](#TheDataset)
   - [Preparing the Data](#PreparingData)
   - [Exploring the Data](#ExploringData)
@@ -15,8 +17,8 @@ My goal is to determine if it is feasible that wearable devices can be used to d
   - [Establishing a Baseline](#Baseline)
     - [Results for KNN](#KNN_Results)
     - [Learning Curves](#LearningCurves)
-  - [What would the performance be if we used one sensor?](#OneSensor)
-    - [Would an increase in the number of trees in the forest improve our accuracy?](#IncreaseTrees)
+  - [Using one Sensor](#OneSensor)
+    - [Increasing the Forest Size](#IncreaseTrees)
     - [Boosting!](#Boosting)
     - [Feature Engineering!](#FeatureEngineering)
 - [Conclusion](#Conclusion)
@@ -40,12 +42,12 @@ One of the inertial devices was worn on the ankle, another one on the wrist, and
 
 Information about this dataset can be found in the reference at the end of this article and here: http://archive.ics.uci.edu/ml/datasets/pamap2+physical+activity+monitoring
 
-
+[Top](#Top)
 ## <a name="PreparingData"></a>Preparing the Data
 
 After importing the data, I dropped the features that included individual identifier information and features different from motion or inertia (i.e., subject, heart vari, temperature). I also dropped the information from a second accelerometer in each device that tended to saturate (the range of accelerations detected was too small for some high impact activities such as running), and I also dropped the information from a magnetometer deemed irrelevant by the researchers that collected the data.
 
-
+[Top](#Top)
 ## <a name="ExploringData"></a>Exploring the Data
 
 The data comprised a total of approximately 1.9 million samples distributed across 12 activities and nine subjects.
@@ -60,10 +62,10 @@ The number of sample per activity ranged from 47 thousand (jumping rope) to 230 
 
 ![alt text](/images/2017-9-22_post/ActivitySampleCount.png "Activity Sample Count")
 
-
+[Top](#Top)
 # <a name="TheProcess"></a>The Process
 
-
+[Top](#Top)
 ## <a name="Baseline"></a>Establishing a Baseline
 
 Before doing any feature engineering, I wanted to establish a baseline by measuring the average accuracy of three different algorithms using 5-fold stratified cross-validation across the entire dataset using all remaining sensor features.
@@ -95,7 +97,7 @@ Given the poor results obtained by the Naive Bayes classifier, I decided to drop
 
 To further check the possibility of overfitting the data, I separated my data into a training and test set using a 66/33 split, fitted the classifiers on the training set and evaluated the precision, recall, and f1-score for each class on the test set. 
 
-
+[Top](#Top)
 #### <a name="KNN_Results"></a>Results for KNN
 
 
@@ -119,7 +121,7 @@ avg/total|1.00|1.00|1.00|
 
 I obtained similar results for my Random Forest classifier. Having 100% precision and recall across all classes increases my suspicions that we are overfitting the training data, and decide to generate learning curves for both classifiers.
 
-
+[Top](#Top)
 ### <a name="LearningCurves"></a>Learning Curves
 
 Using features from all sensors, I generated learning curves for my Random Forest classifier where I varied the maximum allowed depth to a value in the range 15 to 35 and did the same for the KNN classifier by varying the number of neighbors to a value in the range 15 to 45.
@@ -136,12 +138,12 @@ I also checked that the precision, recall and f1 score of the Random Forest clas
 
 ![alt text](/images/2017-9-22_post/RF_MaxDepth15_LearningCurve.png "Random Forest - Depth: 15 - Precision/Recall/F1 Scores - Learning Curve")
 
-
+[Top](#Top)
 ### What about the learning curve for the K-Neighbors classifier?
 
 On second thought I decided not to generate the learning curves given that the process was very time consuming and I was hitting a deadline. On top of that, it seemed to me that the KNN Classifier code would be bigger than the code for the Random Forest classifier because it has to store the dataset it is trained on to make predictions, which would make it less desirable for wearable devices likely to have memory and processor constraints.
 
-
+[Top](#Top)
 ## <a name="OneSensor"></a>What would the performance be if we used one sensor?
 
 When using all sensors and a random forest with depth 15, we achieved an accuracy of 94% on the test set.
@@ -156,14 +158,14 @@ Using two sensors we were able to achieve accuracies between 88% and 91%. Below 
 
 ![alt text](/images/2017-9-22_post/RF_Hand&Chest_accuracy_LearningCurve.png "Random Forest - Hand & Chest Sensors - Accuracy - Learning Curves")
 
-
+[Top](#Top)
 ### <a name="IncreaseTrees"></a>Would an increase in the number of trees in the forest improve our accuracy?
 
 Increasing the number of trees in the Random Forest is an effective way to reduce variance caused by model overfitting, but in our case, the learning curves did not indicate that we were overfitting. I checked anyway if we could increase accuracy by increasing the number of trees in forests of depth 15 but did not achieve an increase in test set accuracy.
 
 ![alt text](/images/2017-9-22_post/RF_Hand_NumEstimators_LearningCurve.png "Random Forest - Hand Sensor - Accuracy - Vary Number of Estimators - Learning Curves")
 
-
+[Top](#Top)
 ### <a name="Boosting"></a>Boosting! Increasing single sensor accuracy above 90%
 
 Boosting is a technique that combines weak learners in such a way to generate an overall strong learner, and has been successfully used in hackathons and Kaggle competitions to achieve increases in accuracy. There are a variety flavors, each with its pros and cons. To start, I decided to run a parameter grid search with 5-fold cross-validation using sklearn's Gradient Boosting Classifier (GBC). I decided to focus on using data from the hand sensor given that individuals already wear wrist devices (watch) and it wouldn't be hard to incorporate an extra sensor in the electronics.
@@ -183,7 +185,7 @@ After four days of running the grid search on my four core Mac, I grew impatient
 
 ![alt text](/images/2017-9-22_post/htop_40_core.png "Gradient Boosting Classifier Grid Search running on 40 core AWS instance")
 
-
+[Top](#Top)
 #### Try the lightGBM boosting algorithm.
 
 While running the Gradient Boosting Classifier, I researched other alternatives. XGBoost and lightGBM are two popular options, with lightGBM having similar performance to XGBoost, but being 10 to 15 times faster than XGBoost.
@@ -194,7 +196,7 @@ The lightGBM grid search was not finished after running for 24 hours. The messag
 
 I stopped the grid search and took stock of what I had tried so far and of the options I had left. My first forest using boosting algorithms had not turned out to be very cost or time efficient. 
 
-
+[Top](#Top)
 ### <a name="FeatureEngineering"></a>Try feature engineering!
 
 After a disappointing six days of waiting, I decided it was time to try some feature design to see if we could achieve an accuracy of greater than 90% with only the hand sensor.
@@ -205,7 +207,7 @@ Using windows of size 4, 8, 16, 32 and 64 I evaluated the learning curves of tre
 
 ![alt text](/images/2017-9-22_post/RF_Hand_FeatureEng_Win16_LearningCurve.png "Random Forest - Hand Sensor - Feature Engineering - Learning Curves")
 
-
+[Top](#Top)
 # <a name="Conclusion"></a>Conclusion
 
 Using three sensors we were able to consistently determine the activity a person was doing with accuracies greater than 90%, but we were not able to achieve this consistently when using data from 1 or 2 sensors even though we attempted some feature design. Using boosting algorithms to increase accuracy was inconclusive given that we were not able to wait until the grid search finished. A future exercise could be to try again using boosting algorithms, but we would have to design the experiment better so as not to rely so heavily on exhaustive grid searches which are extremely time-consuming.
