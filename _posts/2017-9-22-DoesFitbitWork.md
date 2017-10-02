@@ -168,6 +168,7 @@ Day 4... waiting...
 
 After 4 days of running the grid search on my 4 core Mac, I grew impatient and realized I would not be able to run my analysis in a reasonable amount of time. Relaunching my AWS instance became an imperative. After a few hours of tinkering in AWS I had setup a new environment, and I was ready to continue my analysis. I set up the previous gridsearch to run on a 40 core instance.
 
+
 ![alt text](/images/2017-9-22_post/htop_40_core.png "Gradient Boosting Classifier Grid Search running on 40 core AWS instance")
 
 
@@ -186,9 +187,22 @@ After wasting about 6 days running grid searches, I decided it was time to try s
 
 I calculated the pitch, roll, and norm from the x-axis, y-axis, z-axis raw accelerometer data. Also, to capture the temporal nature of the data I segmented the data into windows of various lenghts and calculated the mean and variance of the signals within each window.
 
-\begin{equation}
-  a^2+b^2=c^2
-\end{equation}
+$$
+\begin{align*}
+  & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+  & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+      \phi(e_1, e_1) & \cdots & \phi(e_1, e_n) \\
+      \vdots & \ddots & \vdots \\
+      \phi(e_n, e_1) & \cdots & \phi(e_n, e_n)
+    \end{array} \right)
+  \left( \begin{array}{c}
+      y_1 \\
+      \vdots \\
+      y_n
+    \end{array} \right)
+\end{align*}
+$$
 
 Using windows of size 4, 8, 16, 32 and 64 I evaluated the learning curves of trees of maximum depth 15, 20, 25, and 35. As we found earlier, trees with depth greater than 15 were overfitting, and the accuracy of the model did not surpass 85% with any of the windows.. Below is the image of the learning curves for the model when using a window of size 16.
 
