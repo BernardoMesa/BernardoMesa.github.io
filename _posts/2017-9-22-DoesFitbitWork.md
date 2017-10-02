@@ -5,6 +5,7 @@ title: Human Activity Recognition - Do fitbits work?
 categories: project
 ---
 
+
 My goal is to determine if it is feasible that wearable devices can be used to determine what activities you are doing, or if we are just being fed a nice story to sell us yet another useless piece of electronics.
 
 The increase in living standards in our society has brought some mixed blessings. On one hand we have abundant food supplies (in some parts of the world) and we tend to live longer, but on the other hand, our sedentary lifestyle has lead to an obesity epidemic and seems linked to sharp decreases in quality of life during our golden years.
@@ -188,6 +189,28 @@ After wasting about 6 days running grid searches, I decided it was time to try s
 
 I calculated the pitch, roll, and norm from the x-axis, y-axis, z-axis raw accelerometer data. Also, to capture the temporal nature of the data I segmented the data into windows of various lenghts and calculated the mean and variance of the signals within each window.
 
+<<<<<<< HEAD
+=======
+$$ 5 + 5 $$
+
+$$
+\begin{align*}
+  & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+  & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+      \phi(e_1, e_1) & \cdots & \phi(e_1, e_n) \\
+      \vdots & \ddots & \vdots \\
+      \phi(e_n, e_1) & \cdots & \phi(e_n, e_n)
+    \end{array} \right)
+  \left( \begin{array}{c}
+      y_1 \\
+      \vdots \\
+      y_n
+    \end{array} \right)
+\end{align*}
+$$
+
+>>>>>>> 8a7e2dbd317997dcc1af3c484297c50b19fe55d9
 Using windows of size 4, 8, 16, 32 and 64 I evaluated the learning curves of trees of maximum depth 15, 20, 25, and 35. As we found earlier, trees with depth greater than 15 were overfitting, and the accuracy of the model did not surpass 85% with any of the windows.. Below is the image of the learning curves for the model when using a window of size 16.
 
 ![alt text](/images/2017-9-22_post/RF_Hand_FeatureEng_Win16_LearningCurve.png "Random Forest - Hand Sensor - Feature Engineering - Learning Curves")
