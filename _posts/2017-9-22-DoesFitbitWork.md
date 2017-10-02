@@ -144,7 +144,7 @@ I also checked that the precision, recall and f1 score of the Random Forest clas
 On second thought I decided not to generate the learning curves given that the process was very time consuming and I was hitting a deadline. On top of that, it seemed to me that the KNN Classifier code would be bigger than the code for the Random Forest classifier because it has to store the dataset it is trained on to make predictions, which would make it less desirable for wearable devices likely to have memory and processor constraints.
 
 
-## <a name="OneSensor"></a>What would the performance be if we used one sensor?
+## <a name="OneSensor"></a>Using One Sensor - Can we achieve high accuracies?
 
 When using all sensors and a random forest with depth 15, we achieved an accuracy of 94% on the test set.
 
@@ -159,7 +159,7 @@ Using two sensors we were able to achieve accuracies between 88% and 91%. Below 
 ![alt text](/images/2017-9-22_post/RF_Hand&Chest_accuracy_LearningCurve.png "Random Forest - Hand & Chest Sensors - Accuracy - Learning Curves")
 
 [Top](#Top)
-### <a name="IncreaseTrees"></a>Would an increase in the number of trees in the forest improve our accuracy?
+### <a name="IncreaseTrees"></a>Increasing the size of the forest
 
 Increasing the number of trees in the Random Forest is an effective way to reduce variance caused by model overfitting, but in our case, the learning curves did not indicate that we were overfitting. I checked anyway if we could increase accuracy by increasing the number of trees in forests of depth 15 but did not achieve an increase in test set accuracy.
 
@@ -197,7 +197,7 @@ The lightGBM grid search was not finished after running for 24 hours. The messag
 I stopped the grid search and took stock of what I had tried so far and of the options I had left. My first forest using boosting algorithms had not turned out to be very cost or time efficient. 
 
 [Top](#Top)
-### <a name="FeatureEngineering"></a>Try Feature Engineering
+### <a name="FeatureEngineering"></a>Feature Engineering
 
 After a disappointing six days of waiting, I decided it was time to try some feature design to see if we could achieve an accuracy of greater than 90% with only the hand sensor.
 
